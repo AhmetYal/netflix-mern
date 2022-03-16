@@ -3,9 +3,9 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link, useLocation } from "react-router-dom";
 
 const Watch = ({ movie }) => {
-  // const location = useLocation();
-  // const movie = location.movie;
-  // console.log(location);
+  //const location = useLocation();
+  //const movie = location.movie;
+  //console.log(movie);
   return (
     <div className="watch">
       <Link to="/">
