@@ -4,9 +4,11 @@ import Register from "./pages/register/Register";
 import Watch from "./pages/watch/Watch";
 import Login from "./pages/login/Login";
 import { Routes, Route } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "./authContext/AuthContext";
 
 function App() {
-  const user = true;
+  const { user } = useContext(AuthContext);
   return (
     <>
       <Routes>
