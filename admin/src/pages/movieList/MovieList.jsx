@@ -2,8 +2,21 @@ import "./movieList.css";
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+import { deleteMovie, getMovies } from "../../context/movieContext/apiCalls";
 
 export default function MovieList() {
+  const { movies, dispatch } = useContext(MovieContext);
+
+  useEffect(() => {
+    getMovies(dispatch);
+  }, [dispatch]);
+
+  const handleDelete = (id) => {
+    deleteMovie(id, dispatch);
+  };
+
   const columns = [
     { field: "_id", headerName: "ID", width: 90 },
     {
@@ -38,7 +51,7 @@ export default function MovieList() {
             </Link>
             <DeleteOutlineIcon
               className="productListDelete"
-              //onClick={() => handleDelete(params.row._id)}
+              onClick={() => handleDelete(params.row._id)}
             />
           </>
         );
@@ -49,12 +62,13 @@ export default function MovieList() {
   return (
     <div className="productList">
       <DataGrid
-        // rows={movies}
+        rows={movies}
         disableSelectionOnClick
         columns={columns}
         pageSize={8}
         checkboxSelection
         getRowId={(r) => r._id}
+        rowsPerPageOptions={[8]}
       />
     </div>
   );
